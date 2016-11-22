@@ -6769,6 +6769,7 @@ nav.navbar .navbar-collapse .navbar-nav > li > a {
   color: #000;
   overflow: hidden;
   padding: 10px 10px;
+  transition: color 0.4s ease-in;
 }
 @media (min-width: 992px) {
   nav.navbar .navbar-collapse .navbar-nav > li > a::after,
