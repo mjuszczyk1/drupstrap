@@ -6744,6 +6744,8 @@ nav.navbar {
   background-color: transparent;
   border-bottom: 1px solid #eeeeee;
   font-family: verdana, arial;
+  z-index: 1;
+  min-height: 0;
 }
 nav.navbar .navbar-collapse .navbar-nav {
   margin: 0;
@@ -6766,32 +6768,55 @@ nav.navbar .navbar-collapse .navbar-nav > li {
 nav.navbar .navbar-collapse .navbar-nav > li > a {
   color: #000;
   overflow: hidden;
+  padding: 10px 10px;
 }
 @media (min-width: 992px) {
-  nav.navbar .navbar-collapse .navbar-nav > li > a::after {
+  nav.navbar .navbar-collapse .navbar-nav > li > a::after,
+  nav.navbar .navbar-collapse .navbar-nav > li > a::before {
     content: ' ';
-    height: 5px;
+    height: 50%;
     width: 50%;
     background-color: #000;
     position: absolute;
     left: 25%;
-    bottom: -10%;
-    transition: bottom 0.4s ease-in;
+    transition: all 0.4s ease-in;
+    z-index: -1;
+  }
+  nav.navbar .navbar-collapse .navbar-nav > li > a::after {
+    bottom: -50%;
+  }
+  nav.navbar .navbar-collapse .navbar-nav > li > a::before {
+    top: -50%;
+  }
+  nav.navbar .navbar-collapse .navbar-nav > li > a:hover {
+    color: #FFF;
+    transition: color 0.4s ease-in;
   }
   nav.navbar .navbar-collapse .navbar-nav > li > a:hover::after {
     bottom: 0;
     transition: bottom 0.4s ease-in;
   }
+  nav.navbar .navbar-collapse .navbar-nav > li > a:hover::before {
+    top: 0;
+    transition: top 0.4s ease-in;
+  }
 }
 nav.navbar .navbar-collapse .navbar-nav > li.active > a {
+  color: #FFF;
   background-color: transparent;
 }
-nav.navbar .navbar-collapse .navbar-nav > li.active > a::after {
+nav.navbar .navbar-collapse .navbar-nav > li.active > a::after,
+nav.navbar .navbar-collapse .navbar-nav > li.active > a::before {
   content: ' ';
-  height: 5px;
+  height: 50%;
   width: 50%;
   background-color: #000;
   position: absolute;
   left: 25%;
+}
+nav.navbar .navbar-collapse .navbar-nav > li.active > a::before {
+  top: 0;
+}
+nav.navbar .navbar-collapse .navbar-nav > li.active > a::after {
   bottom: 0;
 }

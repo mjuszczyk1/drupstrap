@@ -6,6 +6,8 @@ nav.navbar {
     background-color: transparent;
     border-bottom: 1px solid @gray-lighter;
     font-family: verdana, arial;
+    z-index: 1;
+    min-height: 0;
     .navbar-collapse {
         .navbar-nav {
             margin: 0;
@@ -24,35 +26,56 @@ nav.navbar {
                 & > a {
                     color: @black;
                     overflow: hidden;
+                    padding: 10px 10px;
                     @media(min-width: @screen-md-min){
-                        &::after {
+                        &::after,
+                        &::before {
                             content: ' ';
-                            height: 5px;
+                            height: 50%;
                             width: 50%;
                             background-color: @black;
                             position: absolute;
                             left: 25%;
-                            bottom: -10%;
-                            transition: bottom .4s ease-in;
+                            transition: all .4s ease-in;
+                            z-index: -1;
+                        }
+                        &::after {
+                            bottom: -50%;
+                        }
+                        &::before {
+                            top: -50%;
                         }
                         &:hover {
+                            color: @white;
+                            transition: color .4s ease-in;
                             &::after {
                                 bottom: 0;
                                 transition: bottom .4s ease-in;
+                            }
+                            &::before {
+                                top: 0;
+                                transition: top .4s ease-in;
                             }
                         }
                     }
                 }
                 &.active {
                     & > a {
+                        color: @white;
                         background-color: transparent;
-                        &::after {
+                        &::after,
+                        &::before {
                             content: ' ';
-                            height: 5px;
+                            height: 50%;
                             width: 50%;
                             background-color: @black;
                             position: absolute;
                             left: 25%;
+                        }
+                        &::before {
+                            top: 0;
+                        }
+                        &::after {
                             bottom: 0;
                         }
                     }
