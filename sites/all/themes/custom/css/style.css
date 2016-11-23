@@ -6821,3 +6821,36 @@ nav.navbar .navbar-collapse .navbar-nav > li.active > a::before {
 nav.navbar .navbar-collapse .navbar-nav > li.active > a::after {
   bottom: 0;
 }
+.beer-category {
+  text-align: center;
+  font-weight: 700;
+}
+.beer-category a {
+  color: #000;
+}
+.beer-container .name {
+  font-weight: 700;
+}
+.beer-container .name,
+.beer-container .name a {
+  color: #000;
+}
+.beer-container .name a::after {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f002";
+  position: relative;
+  bottom: 5px;
+  font-size: 10px;
+}
+.beer-container .price {
+  float: right;
+}
+.beer-container .type {
+  border-bottom: 1px dashed #eeeeee;
+  padding-left: 30px;
+}

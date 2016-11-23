@@ -1,0 +1,37 @@
+.beer-category {
+    text-align: center;
+    font-weight: 700;
+    a {
+        color: @black;
+    }
+}
+.beer-container {
+    .name {
+        font-weight: 700;
+        &, a {
+            color: @black;
+        }
+        a::after {
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            content: "\f002";
+            position: relative;
+            bottom: 5px;
+            font-size: 10px;
+        }
+    }
+    .abv {
+
+    }
+    .price {
+        float: right;
+    }
+    .type {
+        border-bottom: 1px dashed @gray-lighter;
+        padding-left: 30px;
+    }
+}

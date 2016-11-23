@@ -4,6 +4,7 @@ core = 7.x
 base theme = bootstrap
 
 stylesheets[all][] = css/style.css
+stylesheets[all][] = css/font-awesome.min.css
 
 regions[navigation]     = 'Navigation'
 regions[header]         = 'Top Bar'
