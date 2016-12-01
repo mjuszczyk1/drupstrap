@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * Implements hook_page_alter().
+ */
+function custom_views_page_alter(&$page) {
+  // If the main content of this page contains a view, attach its contextual
+  // links to the overall page array. This allows them to be rendered directly
+  // next to the page title.
+  $view = views_get_page_view();
+  // dsm($page);
+  if (!empty($view)) {
+    // If a module is still putting in the display like we used to, catch that.
+    if (is_subclass_of($view, 'views_plugin_display')) {
+      $view = $view->view;
+    }
+
+    views_add_contextual_links($page, 'page', $view, $view->current_display);
+  }
+}
+
+/**
+* Implements hook_preprocess_HOOK() for page.tpl.php.
+*/
+function custom_views_preprocess_page(&$variables) {
+  // If the page contains a view as its main content, contextual links may have
+  // been attached to the page as a whole; for example, by views_page_alter().
+  // This allows them to be associated with the page and rendered by default
+  // next to the page title (which we want). However, it also causes the
+  // Contextual Links module to treat the wrapper for the entire page (i.e.,
+  // the <body> tag) as the HTML element that these contextual links are
+  // associated with. This we don't want; for better visual highlighting, we
+  // prefer a smaller region to be chosen. The region we prefer differs from
+  // theme to theme and depends on the details of the theme's markup in
+  // page.tpl.php, so we can only find it using JavaScript. We therefore remove
+  // the "contextual-links-region" class from the <body> tag here and add
+  // JavaScript that will insert it back in the correct place.
+  // dsm($variables);
+  if (!empty($variables['page']['#views_contextual_links_info'])) {
+    $variables['classes_array'] = array_diff($variables['classes_array'], array('contextual-links-region'));
+  }
+}
+
+function custom_views_views_pre_render(&$view) {
+  // Scramble the order of the rows shown on this result page.
+  // Note that this could be done earlier, but not later in the view execution
+  // process.
+  // $variables['test_count'] = count($view->result);
+  // dsm($variables);
+  // echo count($view->result);
+}
